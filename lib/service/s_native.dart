@@ -51,13 +51,14 @@ class WindowsNativeService extends NativeService {
       skipTaskbar: true,
     );
     windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.hide();
       await windowManager.setAsFrameless();
       await windowManager.setResizable(false);
       await windowManager.setAlignment(Alignment.bottomRight);
       await Window.initialize();
       await Window.setEffect(effect: WindowEffect.transparent);
-      await windowManager.show();
-      await windowManager.focus();
+      //await windowManager.show();
+      //await windowManager.focus();
     });
 
     await trayManager.setIcon("assets/icon_windows.ico");

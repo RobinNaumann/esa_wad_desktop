@@ -1,8 +1,6 @@
 import 'package:elbe/elbe.dart';
 import 'package:macos_ui/macos_ui.dart';
 
-final cAction = Colors.white.withOpacity(.06);
-final cActionPressed = Colors.white.withOpacity(.125);
 
 class AIconButton extends StatefulWidget {
   final IconData icon;
@@ -24,6 +22,10 @@ class _IconButtonState extends State<AIconButton> {
 
   @override
   Widget build(BuildContext context) {
+    final flat = context.theme.color.activeKinds.flat;
+    final normalC = flat.neutral.back;
+    final pressedC = flat.active.back;
+    
     return Opacity(
       opacity: widget.onTap == null ? .4 : 1,
       child: MacosTooltip(
@@ -38,7 +40,7 @@ class _IconButtonState extends State<AIconButton> {
                 border: Border(
                     pixelWidth: 0,
                     borderRadius: BorderRadius.circular(context.rem(5))),
-                color: pressed ? cActionPressed : cAction,
+                color: pressed ? pressedC : normalC,
                 padding: const RemInsets.all(1),
                 child: Icon(widget.icon))),
       ),
@@ -68,7 +70,10 @@ class _ATextButtonState extends State<ATextButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    final flat = context.theme.color.activeKinds.flat;
+    final normalC = flat.neutral.back;
+    final pressedC = flat.active.back;
+    return  GestureDetector(
         onTapDown: (_) => setState(() => pressed = true),
         onTapUp: (_) => setState(() => pressed = false),
         onTapCancel: () => setState(() => pressed = false),
@@ -76,8 +81,8 @@ class _ATextButtonState extends State<ATextButton> {
         child: Box(
             border: Border.none,
             color: pressed
-                ? (widget.color?.inter(Colors.white, .15) ?? cActionPressed)
-                : (widget.color ?? cAction),
+                ? (widget.color?.inter(Colors.white, .15) ?? pressedC)
+                : (widget.color ?? normalC),
             padding: const RemInsets.all(1),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

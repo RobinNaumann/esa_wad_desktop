@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Theme(
       data: ThemeData.preset(
+        colorSeed: ColorSeed.make(accent: LayerColor.fromBack(Color(0xFF003247))),
           remSize: 14, titleFont: "NotesESA", titleVariant: TypeVariants.bold),
       child: BrightnessObserver(
           child: BitProvider(

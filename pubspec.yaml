@@ -37,7 +37,7 @@ flutter:
   fonts:
     - family: NotesESA
       fonts:
-        - asset: assets/notesesa_bold.woff2
+        - asset: assets/notesesa_bold.otf
 
 flutter_launcher_icons:
   windows:

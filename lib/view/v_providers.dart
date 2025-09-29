@@ -41,13 +41,16 @@ class ProviderSnippet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final flat = context.theme.color.activeKinds.flat;
+    final pressedC = flat.active.back;
+
     final accent = ColorTheme.of(context).activeSchemes.accent.back;
     return GestureDetector(
       onTap: () => selected ? null : onSelect(provider, provider.series.first),
       child: Container(
           decoration: BoxDecoration(
             border: WBorder.all(
-                color: selected ? accent : cActionPressed, width: 2),
+                color: selected ? accent : pressedC, width: 2),
             borderRadius: GeometryTheme.of(context).border.borderRadius,
             color: selected ? accent.withOpacity(.125) : Colors.transparent,
           ),
@@ -85,7 +88,7 @@ class ProviderSnippet extends StatelessWidget {
               ),
               Icon(
                 selected ? ApfelIcons.check_mark_circled : ApfelIcons.circle,
-                color: selected ? accent : cActionPressed,
+                color: selected ? accent : pressedC,
               )
             ].spaced(),
           )),
