@@ -1,6 +1,6 @@
 # config:
 label="Wallpaper a Day"
-package="in.robbb.wad"
+package="in.robbb.esawaddesktop"
 
 # script:
 set -e # exit on error

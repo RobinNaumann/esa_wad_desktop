@@ -1,6 +1,4 @@
 import 'package:elbe/elbe.dart';
-import 'package:flutter_acrylic/window.dart';
-import 'package:flutter_acrylic/window_effect.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:moewe/moewe.dart';
 import 'package:wallpaper_a_day/bit/b_autostart.dart';
@@ -18,13 +16,18 @@ main() async {
 
   await Moewe(
           host: "open.moewe.app",
-          project: "c92ae426d776ea34",
-          app: "521fa540a9639f67",
+          project: "832619cde8674509",
+          app: "dbf9dcf4d262b287",
           appVersion: pI?.version,
           buildNumber: int.tryParse(pI?.buildNumber ?? ""))
       .init();
 
+  //await NativeService.i.setupWindow();
+  WindowMainStateListener.instance.overrideIsMainWindow(true);
+
+  // we want the popover to be translucent
   await NativeService.i.setupWindow();
+  await NativeService.i.setAutostart(true);
 
   moewe.events.appOpen();
   runApp(const MyApp());
@@ -36,24 +39,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Theme(
       data: ThemeData.preset(
-          remSize: 14,
-          titleFont: "Helvetica Neue",
-          titleVariant: TypeVariants.bold),
+          remSize: 14, titleFont: "NotesESA", titleVariant: TypeVariants.bold),
       child: BrightnessObserver(
           child: BitProvider(
               create: (_) => SettingsBit(),
               child: BitProvider(
                   create: (_) => AutostartBit(),
-                  child:  MacosApp(
+                  child: MacosApp(
                       title: 'Wallpaper',
-                      builder: (c, __) => NativeService.i.base(c, Navigator(
-                            initialRoute: "/",
-                            onGenerateRoute: (settings) => PageRouteBuilder(
-                                pageBuilder: (c,_,__) => NativeService.i.pageBase(c,settings.name == "/"
-                                    ? const HomeView()
-                                    : const SettingsPage()),
-                                settings: settings),
+                      builder: (c, __) => NativeService.i.base(
+                          c,
+                          Column(
+                            children: [
+                              BrandingBar(),
+                              Expanded(
+                                child: Navigator(
+                                  initialRoute: "/",
+                                  onGenerateRoute: (settings) =>
+                                      PageRouteBuilder(
+                                          transitionDuration: Duration.zero,
+                                          reverseTransitionDuration:
+                                              Duration.zero,
+                                          pageBuilder: (c, _, __) =>
+                                              NativeService.i.pageBase(
+                                                  c,
+                                                  settings.name == "/"
+                                                      ? const HomeView()
+                                                      : const SettingsPage()),
+                                          settings: settings),
+                                ),
+                              ),
+                            ],
                           )))))));
 }
-
-

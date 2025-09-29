@@ -1,10 +1,11 @@
 import 'package:elbe/elbe.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:moewe/moewe.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wallpaper_a_day/bit/b_series.dart';
 import 'package:wallpaper_a_day/bit/b_settings.dart';
+import 'package:wallpaper_a_day/providers/provider_esawad.dart';
 import 'package:wallpaper_a_day/view/v_current.dart';
-import 'package:wallpaper_a_day/view/v_settings.dart';
 
 import '../util/icon_btn.dart';
 
@@ -31,11 +32,13 @@ class HomeView extends StatelessWidget {
                       PushButton(
                           onPressed: () => sbit.deleteConfig(),
                           controlSize: ControlSize.large,
-                          child: Text("reset ${settings.provider.label} config")),
+                          child:
+                              Text("reset ${settings.provider.label} config")),
                       Padded.only(
                         top: 1,
                         child: TextButton(
-                            onPressed: () => Navigator.of(context).pushNamed("/settings"),
+                            onPressed: () =>
+                                Navigator.of(context).pushNamed("/settings"),
                             child: const Text("open settings")),
                       )
                     ].spaced(),
@@ -48,7 +51,8 @@ class HomeView extends StatelessWidget {
                           AIconButton(
                               icon: ApfelIcons.settings,
                               tooltip: "settings",
-                              onTap: () => Navigator.of(context).pushNamed("/settings")),
+                              onTap: () =>
+                                  Navigator.of(context).pushNamed("/settings")),
                           AIconButton(
                               icon: ApfelIcons.chevron_left,
                               tooltip: "previous",
@@ -76,8 +80,7 @@ class HomeView extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            const MoeweUpdateView(
-                                url: "https://apps.robbb.in/wallpaper_a_day"),
+                            MoeweUpdateView(url: ESAHost),
                             Padded.symmetric(
                               horizontal: 1,
                               child: (data.current == null)
@@ -102,7 +105,7 @@ class HomeView extends StatelessWidget {
                                     "${settings.provider.label} - ${settings.series.label}",
                                 onTap: () => bit.refresh(),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -168,5 +171,24 @@ class __ReloadBtnState extends State<_ReloadBtn>
         ].spaced(amount: .5),
       ),
     );
+  }
+}
+
+class BrandingBar extends ThemedWidget {
+  const BrandingBar({super.key});
+
+  @override
+  Widget make(BuildContext context, ThemeData theme) {
+    final dark = theme.color.mode.isDark;
+    return Card(
+        onTap: () => launchUrlString("https://www.esa.int"),
+        border: Border.noneRect,
+        child: Row(children: [
+          Text.h4("Daily Earth Wallpaper",
+              color: dark ? null : Color(0xFF003247)),
+          const Spacer(),
+          Image.asset(dark ? "assets/esa_logo_dark.png" : "assets/esa_logo.png",
+              height: 22),
+        ]));
   }
 }

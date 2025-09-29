@@ -26,7 +26,7 @@ abstract class NativeService {
 }
 
 class WindowsNativeService extends NativeService {
-  static const MethodChannel _c = MethodChannel('in.robbb.wad');
+  static const MethodChannel _c = MethodChannel('in.robbb.esawaddesktop');
 
   Future<void> setAutostart(bool onLogin) =>
       _invoke(_c, 'setAutostart', {'on_login': onLogin});
@@ -93,7 +93,7 @@ class WindowsNativeService extends NativeService {
 }
 
 class MacosNativeService extends NativeService {
-  static const MethodChannel _c = MethodChannel('in.robbb.wad');
+  static const MethodChannel _c = MethodChannel('in.robbb.esawaddesktop');
   Future<void> setWallpaper(File file) =>
       _invoke(_c, 'setWallpaper', {'path': file.path});
 
@@ -104,8 +104,8 @@ class MacosNativeService extends NativeService {
 
   @override
   Future<void> setupWindow() async {
-    await Window.initialize();
-    await Window.setEffect(effect: WindowEffect.transparent, dark: false);
+    //await Window.initialize();
+    //await Window.setEffect(effect: WindowEffect.transparent, dark: false);
   }
 }
 

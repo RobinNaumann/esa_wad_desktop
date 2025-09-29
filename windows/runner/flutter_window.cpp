@@ -24,7 +24,7 @@
 void AlreadyRunningGuard()
 {
     // Unique name for your app's mutex
-    const TCHAR* mutexName = _T("in.robbb.wad");
+    const TCHAR* mutexName = _T("in.robbb.esawaddesktop");
 
     // Try to create the mutex
     HANDLE hMutex = CreateMutex(NULL, FALSE, mutexName);
@@ -133,7 +133,7 @@ bool FlutterWindow::OnCreate() {
   RegisterPlugins(flutter_controller_->engine());
 
   flutter::MethodChannel<> channel(
-      flutter_controller_->engine()->messenger(), "in.robbb.wad",
+      flutter_controller_->engine()->messenger(), "in.robbb.esawaddesktop",
       &flutter::StandardMethodCodec::GetInstance());
   channel.SetMethodCallHandler(
       [](const flutter::MethodCall<>& call,

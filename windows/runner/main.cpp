@@ -29,7 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   Win32Window::Size size(50, 50);
   // hide the window initially, until Flutter renders the first frame
   // to avoid white flash
-  if (!window.Create(L"Wallpaper A Day", origin, size)) {
+  if (!window.Create(L"Daily Earth Wallpaper", origin, size)) {
     return EXIT_FAILURE;
   }
   window.SetQuitOnClose(true);

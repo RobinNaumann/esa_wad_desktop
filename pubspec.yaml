@@ -14,7 +14,7 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   flutter_acrylic: ^1.1.4
-  macos_ui: 2.0.9
+  macos_ui: 2.1.7
   elbe: ^0.2.8
   moewe: ^0.2.9
   http: ^1.2.2
@@ -34,11 +34,15 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+  fonts:
+    - family: NotesESA
+      fonts:
+        - asset: assets/notesesa_bold.woff2
 
 flutter_launcher_icons:
   windows:
     generate: true
-    image_path: "assets/icon.png"
+    image_path: "assets/esawad_icon.png"
   macos:
     generate: true
-    image_path: "assets/icon_macos.png"
+    image_path: "assets/esawad_icon.png"
