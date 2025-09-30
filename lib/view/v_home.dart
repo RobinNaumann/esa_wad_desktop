@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:elbe/elbe.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:moewe/moewe.dart';
@@ -5,7 +7,9 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wallpaper_a_day/bit/b_series.dart';
 import 'package:wallpaper_a_day/bit/b_settings.dart';
 import 'package:wallpaper_a_day/providers/provider_esawad.dart';
+import 'package:wallpaper_a_day/service/s_native.dart';
 import 'package:wallpaper_a_day/view/v_current.dart';
+import 'package:window_manager/window_manager.dart';
 
 import '../util/icon_btn.dart';
 
@@ -174,6 +178,7 @@ class __ReloadBtnState extends State<_ReloadBtn>
   }
 }
 
+
 class BrandingBar extends ThemedWidget {
   const BrandingBar({super.key});
 
@@ -181,7 +186,14 @@ class BrandingBar extends ThemedWidget {
   Widget make(BuildContext context, ThemeData theme) {
     final dark = theme.color.mode.isDark;
     return Card(
-        onTap: () => launchUrlString("https://www.esa.int"),
+        onTap: () {
+          windowIsDocked = !windowIsDocked;
+          if (!windowIsDocked) {
+            windowManager.center(animate: true);
+          } else {
+            windowManager.setAlignment(Alignment.bottomRight, animate: true);
+          }
+        },
         border: Border.noneRect,
         child: Row(children: [
           Text.h4("Daily Earth Wallpaper",
