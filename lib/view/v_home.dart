@@ -80,7 +80,7 @@ class HomeView extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            MoeweUpdateView(url: ESAHost),
+                            MoeweUpdateView(url: ESAHost()),
                             Padded.symmetric(
                               horizontal: 1,
                               child: (data.current == null)

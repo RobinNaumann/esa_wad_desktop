@@ -24,7 +24,7 @@ class SettingsPage extends StatelessWidget {
                 icon: Icons.x,
                 tooltip: "back",
                 onTap: Navigator.of(context).pop),
-            const Text.h4("Daily Earth Wallpaper"),
+            const Text.h4("settings"),
             AIconButton(
               icon: ApfelIcons.exclamationmark_bubble,
               tooltip: "send feedback",

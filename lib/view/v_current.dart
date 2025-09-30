@@ -39,7 +39,7 @@ class CurrentImage extends StatelessWidget {
         if (model.link != null)
           ATextButton(
             icon: ApfelIcons.link,
-            label: "learn more",
+            label: "learn more / vote",
             onTap: () => launchUrlString(model.link ?? "https://bing.com"),
           ),
       ].spaced(),

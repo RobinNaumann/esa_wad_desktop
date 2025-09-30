@@ -108,6 +108,13 @@ class MacosNativeService extends NativeService {
     //await Window.initialize();
     //await Window.setEffect(effect: WindowEffect.transparent, dark: false);
   }
+
+  @override
+  Widget pageBase(BuildContext context, Widget child) => Container(
+      color: context.theme.color.mode == ColorModes.light
+          ? const Color(0xFFF0F0F0)
+          : const Color(0xFF202020),
+      child: child);
 }
 
 Future<T?> _invoke<T>(
