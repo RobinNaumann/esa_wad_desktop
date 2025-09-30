@@ -43,7 +43,8 @@ class WindowsNativeService extends NativeService {
 
   Future<bool> _mainDisplayHasHigherScaling() async {
     final mainDisplay = await screenRetriever.getPrimaryDisplay();
-    return (mainDisplay.scaleFactor ?? 1) > 1.0;
+    final displays = await screenRetriever.getAllDisplays();
+    return displays.length > 1 && (mainDisplay.scaleFactor ?? 1) > 1.0;
   }
 
   @override
