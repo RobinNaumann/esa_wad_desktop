@@ -57,27 +57,29 @@ class MyApp extends StatelessWidget {
                       title: 'Wallpaper',
                       builder: (c, __) => NativeService.i.base(
                           c,
-                          Column(
-                            children: [
-                              BrandingBar(),
-                              Expanded(
-                                child: Navigator(
-                                  initialRoute: "/",
-                                  onGenerateRoute: (settings) =>
-                                      PageRouteBuilder(
-                                          transitionDuration: Duration.zero,
-                                          reverseTransitionDuration:
-                                              Duration.zero,
-                                          pageBuilder: (c, _, __) =>
-                                              NativeService.i.pageBase(
-                                                  c,
-                                                  settings.name == "/"
-                                                      ? const HomeView()
-                                                      : const SettingsPage()),
-                                          settings: settings),
+                          Box(
+                            child: Column(
+                              children: [
+                                BrandingBar(),
+                                Expanded(
+                                  child: Navigator(
+                                    initialRoute: "/",
+                                    onGenerateRoute: (settings) =>
+                                        PageRouteBuilder(
+                                            transitionDuration: Duration.zero,
+                                            reverseTransitionDuration:
+                                                Duration.zero,
+                                            pageBuilder: (c, _, __) =>
+                                                NativeService.i.pageBase(
+                                                    c,
+                                                    settings.name == "/"
+                                                        ? const HomeView()
+                                                        : const SettingsPage()),
+                                            settings: settings),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           )))))));
 }
 

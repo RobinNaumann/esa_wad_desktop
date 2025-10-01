@@ -64,8 +64,7 @@ class WindowsNativeService extends NativeService {
       await windowManager.setAsFrameless();
       await windowManager.setSize(size);
       await windowManager.setResizable(false);
-      await windowManager.center();
-      //await windowManager.setAlignment(Alignment.bottomRight);
+      await windowManager.setAlignment(Alignment.bottomRight);
       await Window.initialize();
       await Window.setEffect(effect: WindowEffect.transparent);
       //await windowManager.show();
