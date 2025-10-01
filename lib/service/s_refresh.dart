@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:elbe/elbe.dart';
 import 'package:moewe/moewe.dart' hide JsonMap;
+import 'package:wallpaper_a_day/main.dart';
 import 'package:wallpaper_a_day/model/m_provider.dart';
 
 class _NextRefresh {
@@ -42,7 +43,7 @@ class RefreshScheduler {
     final now = UnixMs.now;
     final tomorrow = _tomorrow();
     try {
-      moewe.event("img_refresh", data: {"provider": provider.id, "series": series});
+      moewe.event("img_refresh", data: {"provider": provider.id, "series": series, "session": sessionId});
       await worker();
       _next[_key] = _NextRefresh(tomorrow, 0);
     } catch (e) {
