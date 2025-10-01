@@ -43,7 +43,6 @@ class RefreshScheduler {
     final now = UnixMs.now;
     final tomorrow = _tomorrow();
     try {
-      moewe.event("img_refresh", data: {"provider": provider.id, "series": series, "session": sessionId});
       await worker();
       _next[_key] = _NextRefresh(tomorrow, 0);
     } catch (e) {

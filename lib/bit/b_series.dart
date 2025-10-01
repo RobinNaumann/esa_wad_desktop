@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:elbe/elbe.dart';
 import 'package:moewe/moewe.dart';
 import 'package:wallpaper_a_day/bit/b_settings.dart';
+import 'package:wallpaper_a_day/main.dart';
 import 'package:wallpaper_a_day/model/m_image.dart';
 import 'package:wallpaper_a_day/model/m_provider.dart';
 import 'package:wallpaper_a_day/service/s_refresh.dart';
@@ -49,7 +50,7 @@ class SeriesBit extends MapMsgBitControl<SeriesData> {
       series: series.id,
       worker: () async {
         moewe.event("fetch",
-            data: {"provider": provider.id, "series": series.id});
+            data: {"provider": provider.id, "series": series.id, "session": sessionId});
         await StorageService.i.refresh(provider, series.id);
         reload();
       },
