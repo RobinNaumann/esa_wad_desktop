@@ -324,10 +324,10 @@ packages:
     dependency: "direct main"
     description:
       name: moewe
-      sha256: "2bc24eaa0a7f07c2132457c4c6e91ca7b4271f04c2d9937730121f9931cd7af0"
+      sha256: "003caccbaa65aaee6e097b00ae4a5072eb92c1cb5e7464f51cc26e0ae1a0fd99"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.9"
+    version: "0.2.10"
   package_info_plus:
     dependency: transitive
     description:

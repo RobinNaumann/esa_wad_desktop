@@ -15,9 +15,11 @@ main() async {
   final pI = await tryCatchAsync(() => PackageInfo.fromPlatform());
 
   await Moewe(
-          host: "moewe.robbb.in",
-          project: "832619cde8674509",
-          app: "dbf9dcf4d262b287",
+          host: "earth.robin.go.esa.int",
+          insecure: true,
+          apiPath: "/api/moewe",
+          project: "esa_wad",
+          app: "flutter",
           appVersion: pI?.version,
           buildNumber: int.tryParse(pI?.buildNumber ?? ""))
       .init();
