@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Daily Earth Wallpaper"
-#define MyAppVersion "0.8"
+#define MyAppVersion "0.2.14"
 #define MyAppPublisher "Robin Naumann @ ESA"
 #define MyAppURL "https://earth.robin.go.esa.int"
 #define MyAppExeName "wallpaper_a_day.exe"
