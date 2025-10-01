@@ -15,7 +15,7 @@ main() async {
   final pI = await tryCatchAsync(() => PackageInfo.fromPlatform());
 
   await Moewe(
-          host: "open.moewe.app",
+          host: "moewe.robbb.in",
           project: "832619cde8674509",
           app: "dbf9dcf4d262b287",
           appVersion: pI?.version,

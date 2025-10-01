@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:elbe/elbe.dart';
+import 'package:moewe/moewe.dart' hide JsonMap;
 import 'package:wallpaper_a_day/model/m_provider.dart';
 
 class _NextRefresh {
@@ -41,10 +42,11 @@ class RefreshScheduler {
     final now = UnixMs.now;
     final tomorrow = _tomorrow();
     try {
+      moewe.event("img_refresh", data: {"provider": provider.id, "series": series});
       await worker();
       _next[_key] = _NextRefresh(tomorrow, 0);
     } catch (e) {
-      final nextFail = (_next[_key]?.failCount ?? 0) + 1;
+      final int nextFail = (_next[_key]?.failCount ?? 0) + 1;
       _next[_key] = _NextRefresh(
           Math.min(tomorrow, UnixMs(now + 1000 * 60 * 2 * nextFail)), nextFail);
       throw ElbeError("REF_01", "could not refresh", cause: e);
