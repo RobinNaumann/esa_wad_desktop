@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Daily Earth Wallpaper"
-#define MyAppVersion "0.2.14"
+#define MyAppVersion "0.2.17"
 #define MyAppPublisher "Robin Naumann @ ESA"
 #define MyAppURL "https://earth.robin.go.esa.int"
 #define MyAppExeName "wallpaper_a_day.exe"
@@ -35,7 +35,8 @@ DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 OutputDir=..\dist\windows
 OutputBaseFilename=DailyEarthWallpaper
-SolidCompression=yes
+; SolidCompression=yes
+Compression=zip
 WizardStyle=modern
 
 [Languages]

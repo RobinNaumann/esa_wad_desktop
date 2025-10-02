@@ -1,9 +1,6 @@
-import 'dart:ui';
-
 import 'package:elbe/elbe.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:moewe/moewe.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wallpaper_a_day/bit/b_series.dart';
 import 'package:wallpaper_a_day/bit/b_settings.dart';
 import 'package:wallpaper_a_day/providers/provider_esawad.dart';
@@ -34,10 +31,9 @@ class HomeView extends StatelessWidget {
                       const Text("data could not be read",
                           textAlign: TextAlign.center),
                       PushButton(
-                          onPressed: () => sbit.deleteConfig(),
+                          onPressed: () => bit.reload(),
                           controlSize: ControlSize.large,
-                          child:
-                              Text("reset ${settings.provider.label} config")),
+                          child: Text("try again")),
                       Padded.only(
                         top: 1,
                         child: TextButton(
@@ -177,7 +173,6 @@ class __ReloadBtnState extends State<_ReloadBtn>
     );
   }
 }
-
 
 class BrandingBar extends ThemedWidget {
   const BrandingBar({super.key});

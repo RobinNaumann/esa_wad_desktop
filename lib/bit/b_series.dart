@@ -29,12 +29,12 @@ class SeriesBit extends MapMsgBitControl<SeriesData> {
   final String? id;
 
   late Timer _wallTimer;
+  late Timer _reloadTimer;
   late RefreshScheduler _scheduler;
 
   SeriesBit(this.provider, this.series, this.id)
       : super.worker((_) async {
           final list = await StorageService.i.list(provider.id, series.id);
-
           final index = id == null
               ? (list.length - 1)
               : list.indexWhere((e) => e.id == id);
@@ -44,13 +44,19 @@ class SeriesBit extends MapMsgBitControl<SeriesData> {
         }) {
     _set();
     _wallTimer = Timer.periodic(const Duration(seconds: 2), (_) => _set());
+    _reloadTimer = Timer.periodic(const Duration(seconds: 30), (_) {
+      this.state.whenOrNull(onError: (error) => reload());
+    });
 
     _scheduler = RefreshScheduler(
       provider: provider,
       series: series.id,
       worker: () async {
-        moewe.event("fetch",
-            data: {"provider": provider.id, "series": series.id, "session": sessionId});
+        moewe.event("fetch", data: {
+          "provider": provider.id,
+          "series": series.id,
+          "session": sessionId
+        });
         await StorageService.i.refresh(provider, series.id);
         reload();
       },
@@ -82,6 +88,7 @@ class SeriesBit extends MapMsgBitControl<SeriesData> {
   @override
   void dispose() {
     _wallTimer.cancel();
+    _reloadTimer.cancel();
     _scheduler.dispose();
     super.dispose();
   }

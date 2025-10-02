@@ -1,8 +1,3 @@
 import 'package:wallpaper_a_day/providers/provider_esawad.dart';
 
-final providers = [
-  //bingProvider,
-  //apodProvider,
-  //wikiCommonsProvider,
-  esawadProvider
-];
+final providers = [esawadProvider];
